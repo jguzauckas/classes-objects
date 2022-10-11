@@ -28,7 +28,10 @@ class Person:
 
     @age.setter
     def age(self, value: int) -> None:
-        self._age = value
+        if value >= 0:
+            self._age = value
+        else:
+            print("Could not set age to {value}.")
 ```
 
 Note first that when using `self` with the dot operator `.` and our variable `age`, we now have slightly different syntax. The underscore `_` essentially marks our attribute as private, which is needed to be a property.
@@ -36,6 +39,8 @@ Note first that when using `self` with the dot operator `.` and our variable `ag
 Our `@` decorators tell Python to treat our new methods as getters and setters. The simple decorator `@property` is for getters, so the method that comes after it should be treated as a getter method for its variable. The setter decorator uses the dot operator `.` and the variable name to make clear what the following method is a setter method for.
 
 Note the return types on the getter and setter methods. Getters return the value, so they have a return type, and setters just set it, so they have a return type of `None`.
+
+The reason we use setters is to help make sure the values we are saving meet certain criteria. In the case of `age`, it would only make sense for `age` to be a positive number, so we use a conditional to check that that is the case before saving it to `_age`. If it doesn't meet the criteria, we do not save it, and in this case, we write a message to the user to let them know.
 
 With those methods defined, we can easily get and set our property as a variable from outside of the class using the dot operator `.`:
 

@@ -13,7 +13,10 @@ class Person:
 
     @age.setter
     def age(self, value: int) -> None:
-        self._age = value
+        if value >= 0:
+            self._age = value
+        else:
+            print("Could not set age to {value}.")
 
 
 # Testing implementation of age property
