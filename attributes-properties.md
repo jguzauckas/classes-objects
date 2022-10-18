@@ -23,7 +23,7 @@ class Person:
         return f"{self.name} is {self.age} years old!"
 
     @property
-    def age(self) -> str:
+    def age(self) -> int:
         return self._age
 
     @age.setter
